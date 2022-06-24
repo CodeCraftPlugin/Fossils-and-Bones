@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"idle": {
+		"animation.t_rex.idle": {
 			"loop": true,
 			"override_previous_animation": true,
 			"bones": {
@@ -35,8 +35,9 @@
 				}
 			}
 		},
-		"walk": {
+		"animation.t_rex.moving": {
 			"loop": true,
+			"override_previous_animation": true,
 			"bones": {
 				"Body": {
 					"rotation": {
@@ -90,8 +91,9 @@
 				}
 			}
 		},
-		"run": {
+		"animation.t_rex.run": {
 			"loop": true,
+			"override_previous_animation": true,
 			"bones": {
 				"Body": {
 					"rotation": {

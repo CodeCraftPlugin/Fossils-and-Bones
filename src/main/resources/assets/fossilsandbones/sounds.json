@@ -1,0 +1,14 @@
+{
+  "dowsing_rod_found_ore": {
+    "subtitle": "fossilsandbones.dowsing_rod_found_ore",
+    "sounds": [
+      "fossilsandbones:dowsing_rod_found_ore"
+    ]
+  },
+  "trex_roar": {
+    "subtitle": "fossilsandbones.trex_roar",
+    "sounds": [
+      "fossilsandbones:trex_roar"
+    ]
+  }
+}

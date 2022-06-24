@@ -13,6 +13,6 @@ public class T_rexRender extends GeoEntityRenderer<T_rexEntity> {
 
     @Override
     public Identifier getTextureResource(T_rexEntity instance) {
-         return new Identifier(Fossil.MOD_ID,"textures/tyrannosaurus_rex/Tyrannosaurus_rex.png");
+         return new Identifier(Fossil.MOD_ID,"textures/entity/tyrannosaurus_rex/tyrannosaurus_rex.png");
     }
 }

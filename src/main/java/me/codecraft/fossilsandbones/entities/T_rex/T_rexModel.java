@@ -7,12 +7,12 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 public class T_rexModel extends AnimatedGeoModel<T_rexEntity> {
     @Override
     public Identifier getModelResource(T_rexEntity object) {
-        return new Identifier(Fossil.MOD_ID,"geo/Tyrannosaurus_rex.geo.json");
+        return new Identifier(Fossil.MOD_ID,"geo/tyrannosaurus_rex.geo.json");
     }
 
     @Override
     public Identifier getTextureResource(T_rexEntity object) {
-        return new Identifier(Fossil.MOD_ID,"textures/tyrannosaurus_rex/Tyrannosaurus_rex.png");
+        return new Identifier(Fossil.MOD_ID,"textures/entity/tyrannosaurus_rex/tyrannosaurus_rex.png");
     }
 
     /**

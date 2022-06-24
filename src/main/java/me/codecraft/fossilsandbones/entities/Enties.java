@@ -11,8 +11,8 @@ import net.minecraft.util.registry.Registry;
 
 public class Enties {
 
-    public static final EntityType<T_rexEntity> T_REX = registery("t_rex", FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, T_rexEntity::new)
-            .dimensions(EntityDimensions.fixed(0.6f, 0.5f)).fireImmune()
+    public static final EntityType<T_rexEntity> T_REX = registery("t_rex", FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, T_rexEntity::new)
+            .dimensions(EntityDimensions.fixed(5.0f, 3.0f))
             .build());
 
     private static EntityType registery(String name, EntityType entity){
