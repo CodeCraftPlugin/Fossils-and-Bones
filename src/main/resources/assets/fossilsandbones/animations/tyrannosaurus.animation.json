@@ -35,7 +35,7 @@
 				}
 			}
 		},
-		"animation.t_rex.moving": {
+		"animation.t_rex.walk": {
 			"loop": true,
 			"override_previous_animation": true,
 			"bones": {
@@ -142,6 +142,5 @@
 				}
 			}
 		}
-	},
-	"geckolib_format_version": 2
+	}
 }
