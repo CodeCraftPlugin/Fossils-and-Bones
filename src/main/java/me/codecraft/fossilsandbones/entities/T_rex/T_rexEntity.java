@@ -63,7 +63,7 @@ public class T_rexEntity extends HostileEntity implements IAnimatable {
     }
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         if (event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.t_rex.run", false));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.t_rex.walk", true));
             return PlayState.CONTINUE;
         }
         event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.t_rex.idle", true));
