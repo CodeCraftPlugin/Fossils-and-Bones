@@ -15,11 +15,15 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 /**
- * The type Edmontosaurus entity.
+ * The  Edmontosaurus Dino.
  */
 public class EdmontosaurusEntity extends AnimalEntity implements IAnimatable {
     /**
@@ -54,7 +58,17 @@ public class EdmontosaurusEntity extends AnimalEntity implements IAnimatable {
 
     @Override
     public void registerControllers(AnimationData animationData) {
+        animationData.addAnimationController(new AnimationController(this,"edmontosaurus",1,this::predicate));
 
+    }
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+        if (event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("edmontosaurus.animation.walk", true));
+            return PlayState.CONTINUE;
+        }
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("edmontosaurus.animation.idle", true));
+
+        return PlayState.CONTINUE;
     }
 
     @Override
@@ -63,9 +77,9 @@ public class EdmontosaurusEntity extends AnimalEntity implements IAnimatable {
     }
 
     /**
-     * Set attributes default attribute container . builder.
+     * Set attributes default attribute container for the entity
      *
-     * @return the default attribute container . builder
+     * @return the default attribute container
      */
     public static DefaultAttributeContainer.Builder setAttributes(){
         return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_ATTACK_DAMAGE,25)

@@ -1,18 +1,26 @@
 package me.codecraft.fossilsandbones.entities.T_rex;
 
+import me.codecraft.fossilsandbones.Fossil;
+import me.codecraft.fossilsandbones.entities.Enties;
+import me.codecraft.fossilsandbones.entities.edmontosaurus.EdmontosaurusEntity;
 import me.codecraft.fossilsandbones.sounds.FossilSounds;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.mob.Angerable;
 import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.TimeHelper;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -23,11 +31,17 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+import java.util.UUID;
+
 /**
  * The type T rex entity.
  */
-public class T_rexEntity extends AnimalEntity implements IAnimatable ,Monster {
+public class T_rexEntity extends AnimalEntity implements IAnimatable , Angerable {
     private int ticksUntilNextGrowl = 100;
+    private static final TrackedData<Integer> ANGER_TIME;
+    private static final UniformIntProvider ANGER_TIME_RANGE;
+    @Nullable
+    private UUID angryAt;
     private AnimationFactory factory = new AnimationFactory(this);
 
     /**
@@ -62,6 +76,11 @@ public class T_rexEntity extends AnimalEntity implements IAnimatable ,Monster {
 
     }
 
+    @Override
+    protected void initDataTracker() {
+        this.dataTracker.startTracking(ANGER_TIME, 0);
+    }
+
     /**
      * Init custom goals.
      */
@@ -69,7 +88,8 @@ public class T_rexEntity extends AnimalEntity implements IAnimatable ,Monster {
         this.goalSelector.add(3, new AttackGoal(this));
         this.goalSelector.add(0, new WanderAroundFarGoal(this, 1.0,1.0f));
         this.targetSelector.add(2, new ActiveTargetGoal(this, PlayerEntity.class, true));
-        this.targetSelector.add(7, new ActiveTargetGoal(this, LivingEntity.class, true));
+        this.targetSelector.add(7, new ActiveTargetGoal(this, EdmontosaurusEntity.class, true));
+
 
     }
     @Override
@@ -98,18 +118,18 @@ public class T_rexEntity extends AnimalEntity implements IAnimatable ,Monster {
         return null;
     }
 
-    @Override
+
     public void tickMovement() {
-        super.tickMovement();
-        if (world.isClient&&isAngryAt(this.attackingPlayer)){
-            playSound(FossilSounds.TREX_ANGER,16.0f,1.0f);
-        }
     }
 
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-        return FossilSounds.TREX_ANGER;
+        if (this.hasAngerTime()) {
+            return FossilSounds.TREX_ANGER;
+        } else {
+            return SoundEvents.ENTITY_WOLF_AMBIENT;
+        }
     }
 
     @Override
@@ -123,6 +143,7 @@ public class T_rexEntity extends AnimalEntity implements IAnimatable ,Monster {
      * @param player the player
      * @return the boolean
      */
+
     public boolean isAngryAt(PlayerEntity player) {
         return true;
     }
@@ -130,5 +151,35 @@ public class T_rexEntity extends AnimalEntity implements IAnimatable ,Monster {
     @Override
     public boolean isFireImmune() {
         return true;
+    }
+
+    @Override
+    public int getAngerTime() {
+        return (Integer)this.dataTracker.get(ANGER_TIME);
+    }
+
+    @Override
+    public void setAngerTime(int angerTime) {
+        this.dataTracker.set(ANGER_TIME, angerTime);
+    }
+
+    @Nullable
+    @Override
+    public UUID getAngryAt() {
+        return this.angryAt;
+    }
+
+    @Override
+    public void setAngryAt(@Nullable UUID angryAt) {
+        this.angryAt = angryAt;
+    }
+
+    @Override
+    public void chooseRandomAngerTime() {
+        this.setAngerTime(ANGER_TIME_RANGE.get(this.random));
+    }
+    static {
+        ANGER_TIME = DataTracker.registerData(T_rexEntity.class, TrackedDataHandlerRegistry.INTEGER);
+        ANGER_TIME_RANGE = TimeHelper.betweenSeconds(20, 39);
     }
 }

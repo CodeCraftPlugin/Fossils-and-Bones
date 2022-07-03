@@ -12,15 +12,21 @@
     ]
   },
   "trex_death": {
-    "subtitle": "fossilsandbones:trex_death",
+    "subtitle": "fossilsandbones.trex_death",
     "sounds": [
       "fossilsandbones:trex_death"
     ]
   },
   "trex_idle": {
-    "subtitle": "fossilsandbones:trex_idle",
+    "subtitle": "fossilsandbones.trex_idle",
     "sounds": [
       "fossilsandbones:trex_idle"
+    ]
+  },
+  "trex_angry": {
+    "subtitle": "fossilsandbones.trex_angry",
+    "sounds": [
+      "fossilsandbones:trex_angry"
     ]
   }
 }

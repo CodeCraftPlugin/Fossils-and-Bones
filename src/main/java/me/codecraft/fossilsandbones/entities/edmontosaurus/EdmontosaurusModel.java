@@ -15,7 +15,7 @@ public class EdmontosaurusModel extends AnimatedGeoModel<EdmontosaurusEntity> {
 
     @Override
     public Identifier getTextureResource(EdmontosaurusEntity object) {
-        return new Identifier(Fossil.MOD_ID,"texture/edmontosaurus_variant_1");
+        return new Identifier(Fossil.MOD_ID,"texture/entity/edmontosaurus/edmontosaurus_variant_1.png");
     }
 
     /**

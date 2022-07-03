@@ -21,6 +21,6 @@ public class EdmontosaurusRender extends GeoEntityRenderer<EdmontosaurusEntity> 
 
     @Override
     public Identifier getTextureResource(EdmontosaurusEntity instance) {
-        return new Identifier(Fossil.MOD_ID,"texture/edmontosaurus_variant_1");
+        return new Identifier(Fossil.MOD_ID,"textures/entity/edmontosaurus/edmontosaurus_variant_1.png");
     }
 }

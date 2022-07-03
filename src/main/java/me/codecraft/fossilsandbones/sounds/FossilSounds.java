@@ -24,7 +24,8 @@ public class FossilSounds {
     /**
      * The constant TREX_ANGER.
      */
-    public static SoundEvent TREX_ANGER = registerSoundEvent("trex_idle");
+    public static SoundEvent TREX_IDEL = registerSoundEvent("trex_idle");
+    public static SoundEvent TREX_ANGER = registerSoundEvent("trex_angry");
 
 
     private static SoundEvent registerSoundEvent(String name) {

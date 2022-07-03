@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"walk": {
+		"edmontosaurus.animation.walk": {
 			"loop": true,
 			"override_previous_animation": true,
 			"bones": {
@@ -52,7 +52,7 @@
 				}
 			}
 		},
-		"run": {
+		"edmontosaurus.animation.run": {
 			"loop": true,
 			"override_previous_animation": true,
 			"bones": {
@@ -103,7 +103,7 @@
 				}
 			}
 		},
-		"idle": {
+		"edmontosaurus.animation.idle": {
 			"loop": true,
 			"override_previous_animation": true,
 			"bones": {
