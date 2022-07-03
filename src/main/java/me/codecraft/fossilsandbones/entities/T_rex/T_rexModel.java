@@ -5,6 +5,8 @@ import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class T_rexModel extends AnimatedGeoModel<T_rexEntity> {
+
+
     @Override
     public Identifier getModelResource(T_rexEntity object) {
         return new Identifier(Fossil.MOD_ID,"geo/tyrannosaurus_rex.geo.json");
@@ -26,4 +28,6 @@ public class T_rexModel extends AnimatedGeoModel<T_rexEntity> {
     public Identifier getAnimationResource(T_rexEntity animatable) {
         return new Identifier(Fossil.MOD_ID,"animations/tyrannosaurus.animation.json");
     }
+
+
 }

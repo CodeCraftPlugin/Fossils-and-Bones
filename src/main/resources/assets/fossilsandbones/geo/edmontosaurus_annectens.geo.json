@@ -1,0 +1,146 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 256,
+				"texture_height": 256,
+				"visible_bounds_width": 19,
+				"visible_bounds_height": 6.5,
+				"visible_bounds_offset": [0, 2.75, 0]
+			},
+			"bones": [
+				{
+					"name": "EdmontosaurusAnnectens",
+					"pivot": [0, 24, 0],
+					"rotation": [0, 180, 0]
+				},
+				{
+					"name": "body",
+					"parent": "EdmontosaurusAnnectens",
+					"pivot": [0, 24, 0]
+				},
+				{
+					"name": "bone",
+					"parent": "body",
+					"pivot": [0, 24, 0],
+					"cubes": [
+						{"origin": [-18, 24, -29], "size": [36, 38, 57], "uv": [0, 0]},
+						{"origin": [0, 62, -29], "size": [0, 1, 57], "uv": [100, 103]}
+					]
+				},
+				{
+					"name": "neck",
+					"parent": "bone",
+					"pivot": [-0.25, 43, 27],
+					"cubes": [
+						{"origin": [-7, 39, 24], "size": [14, 34, 15], "uv": [0, 95]},
+						{"origin": [0, 62, 23], "size": [0, 12, 4], "uv": [34, 8]}
+					]
+				},
+				{
+					"name": "head",
+					"parent": "neck",
+					"pivot": [7.75, 68.8, 28],
+					"cubes": [
+						{"origin": [-8, 65.9, 27], "size": [16, 7, 15], "uv": [0, 176]},
+						{"origin": [-5, 65.9, 42], "size": [10, 0, 12], "uv": [22, 0]},
+						{"origin": [-5, 63.9, 42], "size": [10, 9, 12], "uv": [187, 90]}
+					]
+				},
+				{
+					"name": "jaw",
+					"parent": "head",
+					"pivot": [8, 64.8, 27],
+					"cubes": [
+						{"origin": [-8, 62.9, 27], "size": [16, 3, 15], "uv": [0, 144]},
+						{"origin": [-4.9, 63.9, 42], "size": [9.8, 2, 11.9], "uv": [187, 111]}
+					]
+				},
+				{
+					"name": "tail",
+					"parent": "bone",
+					"pivot": [0, 53, -28],
+					"cubes": [
+						{"origin": [-11, 41, -72], "size": [22, 21, 43], "uv": [100, 95]},
+						{"origin": [0, 62, -72], "size": [0, 1, 43], "uv": [129, 12]}
+					]
+				},
+				{
+					"name": "tail2",
+					"parent": "tail",
+					"pivot": [0, 54, -72],
+					"cubes": [
+						{"origin": [-8, 49, -140], "size": [16, 13, 68], "uv": [0, 95]},
+						{"origin": [0, 62, -134], "size": [0, 1, 63], "uv": [100, 96]}
+					]
+				},
+				{
+					"name": "frontleftleg",
+					"parent": "body",
+					"pivot": [-16, 34, 23],
+					"cubes": [
+						{"origin": [-21, 0, 19], "size": [9, 37, 8], "uv": [62, 176]}
+					]
+				},
+				{
+					"name": "frontrightleg",
+					"parent": "body",
+					"pivot": [16, 34, 23],
+					"cubes": [
+						{"origin": [12, 0, 19], "size": [9, 37, 8], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "backleftleg",
+					"parent": "EdmontosaurusAnnectens",
+					"pivot": [0, 41, -16],
+					"cubes": [
+						{"origin": [-23, 23, -27], "size": [21, 31, 24], "uv": [144, 161]}
+					]
+				},
+				{
+					"name": "knee",
+					"parent": "backleftleg",
+					"pivot": [-15, 24, -25],
+					"cubes": [
+						{"origin": [-20, 2, -28], "size": [10, 26, 10], "uv": [96, 176]}
+					]
+				},
+				{
+					"name": "foot",
+					"parent": "knee",
+					"pivot": [0, 1, -24],
+					"cubes": [
+						{"origin": [-21, 0, -26], "size": [12, 4, 13], "uv": [186, 73]}
+					]
+				},
+				{
+					"name": "backrightleg",
+					"parent": "EdmontosaurusAnnectens",
+					"pivot": [0, 41, -16],
+					"cubes": [
+						{"origin": [2, 23, -27], "size": [21, 31, 24], "uv": [129, 0]}
+					]
+				},
+				{
+					"name": "knee2",
+					"parent": "backrightleg",
+					"pivot": [15, 24, -25],
+					"cubes": [
+						{"origin": [10, 2, -28], "size": [10, 26, 10], "uv": [100, 95]}
+					]
+				},
+				{
+					"name": "foot2",
+					"parent": "knee2",
+					"pivot": [0, 1, -24],
+					"cubes": [
+						{"origin": [9, 0, -26], "size": [12, 4, 13], "uv": [186, 56]}
+					]
+				}
+			]
+		}
+	]
+}

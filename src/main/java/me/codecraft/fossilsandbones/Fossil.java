@@ -1,7 +1,9 @@
 package me.codecraft.fossilsandbones;
 
 import me.codecraft.fossilsandbones.entities.Enties;
+import me.codecraft.fossilsandbones.items.FossilItemGroups;
 import me.codecraft.fossilsandbones.items.FossilItems;
+import me.codecraft.fossilsandbones.sounds.FossilSounds;
 import me.codecraft.fossilsandbones.utils.Registeries;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
@@ -24,6 +26,7 @@ public class Fossil implements ModInitializer {
 		Enties.entiesregistered();
 		FossilSounds.modsound();
 		FossilItems.registeredFossilItems();
+		FossilItemGroups.registered();
 
 	}
 }

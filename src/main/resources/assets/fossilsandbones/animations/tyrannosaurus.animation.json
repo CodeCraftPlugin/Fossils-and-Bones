@@ -178,66 +178,55 @@
 		},
 		"animation.t_rex.walk": {
 			"loop": true,
-			"animation_length": 3,
-			"override_previous_animation": true,
 			"bones": {
+				"Body": {
+					"rotation": {
+						"vector": ["-math.cos(45-query.anim_time*160)*3", 0, 0]
+					}
+				},
+				"Armleft": {
+					"rotation": {
+						"vector": ["-math.cos(query.anim_time*160)*5", 0, 0]
+					}
+				},
 				"Tail1": {
 					"rotation": {
-						"0.0": {
-							"vector": [0, -5, 0]
-						},
-						"1.5": {
-							"vector": [0, 7.5, 0]
-						},
-						"3.0": {
-							"vector": [0, -5, 0]
-						}
+						"vector": [0, "-math.cos(10+query.anim_time*160)*9", 0]
+					}
+				},
+				"Tail2": {
+					"rotation": {
+						"vector": [0, "-math.cos(10+query.anim_time*160)*9", 0]
+					}
+				},
+				"Neck": {
+					"rotation": {
+						"vector": ["-math.cos(90-query.anim_time*160)*3", 0, 0]
+					}
+				},
+				"Armright": {
+					"rotation": {
+						"vector": ["-math.cos(query.anim_time*160)*5", 0, 0]
 					}
 				},
 				"Legleft": {
 					"rotation": {
-						"0.0": {
-							"vector": [20, 0, 0]
-						},
-						"1.5": {
-							"vector": [-32.5, 0, 0]
-						},
-						"3.0": {
-							"vector": [20, 0, 0]
-						}
-					},
-					"position": {
-						"0.0": {
-							"vector": [0, 0, 0]
-						},
-						"1.5": {
-							"vector": [0, 0, 0]
-						},
-						"3.0": {
-							"vector": [0, 0, 0]
-						}
+						"vector": ["-math.cos(query.anim_time*160)*25", 0, 0]
 					}
 				},
-				"Feetleft": {
-					"position": {
-						"vector": [0, 0, 2.6]
+				"Kneeleft": {
+					"rotation": {
+						"vector": ["-math.cos(query.anim_time*160)*11", 0, 0]
 					}
 				},
 				"Legright": {
 					"rotation": {
-						"0.0": {
-							"vector": [-32.5, 0, 0]
-						},
-						"1.5": {
-							"vector": [20, 0, 0]
-						},
-						"3.0": {
-							"vector": [-32.5, 0, 0],
-							"easing": "linear"
-						}
-					},
-					"position": {
-						"vector": [0, 0, 0]
+						"vector": ["-math.cos(query.anim_time*160)*-25", 0, 0]
+					}
+				},
+				"Kneeright": {
+					"rotation": {
+						"vector": ["-math.cos(query.anim_time*160)*-11", 0, 0]
 					}
 				}
 			}

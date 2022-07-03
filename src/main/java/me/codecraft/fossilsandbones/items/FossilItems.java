@@ -12,7 +12,7 @@ import net.minecraft.util.registry.Registry;
 
 public class FossilItems {
     public static final Item T_REX_SPAWNEGG = registerItems("t_rex_spawnegg",new SpawnEggItem(Enties.T_REX,9177610,
-            3015427,new FabricItemSettings().group(ItemGroup.MISC)));
+            3015427,new FabricItemSettings().group(FossilItemGroups.FOSSIL_AND_BONES)));
 
     private static Item registerItems(String name,Item item){
         return Registry.register(Registry.ITEM,new Identifier(Fossil.MOD_ID,name),item);
