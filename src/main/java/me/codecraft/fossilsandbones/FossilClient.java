@@ -8,6 +8,9 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.entity.Entity;
 
+/**
+ * The type Fossil client.
+ */
 public class FossilClient implements ClientModInitializer {
     /**
      * Runs the mod initializer on the client environment.

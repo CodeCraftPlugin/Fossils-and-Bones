@@ -10,7 +10,13 @@ import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+/**
+ * The type Fossil items.
+ */
 public class FossilItems {
+    /**
+     * The constant T_REX_SPAWNEGG.
+     */
     public static final Item T_REX_SPAWNEGG = registerItems("t_rex_spawnegg",new SpawnEggItem(Enties.T_REX,9177610,
             3015427,new FabricItemSettings().group(FossilItemGroups.FOSSIL_AND_BONES)));
 
@@ -18,6 +24,9 @@ public class FossilItems {
         return Registry.register(Registry.ITEM,new Identifier(Fossil.MOD_ID,name),item);
     }
 
+    /**
+     * Registered fossil items.
+     */
     public static void registeredFossilItems() {
         System.out.println("THE Items has been registered by the "+ Fossil.MOD_ID);
     }

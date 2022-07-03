@@ -6,7 +6,15 @@ import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
+/**
+ * The type Edmontosaurus render.
+ */
 public class EdmontosaurusRender extends GeoEntityRenderer<EdmontosaurusEntity> {
+    /**
+     * Instantiates a new Edmontosaurus render.
+     *
+     * @param ctx the ctx
+     */
     public EdmontosaurusRender(EntityRendererFactory.Context ctx) {
         super(ctx, new EdmontosaurusModel());
     }

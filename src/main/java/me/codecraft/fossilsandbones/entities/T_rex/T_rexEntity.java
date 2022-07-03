@@ -23,14 +23,29 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+/**
+ * The type T rex entity.
+ */
 public class T_rexEntity extends AnimalEntity implements IAnimatable ,Monster {
     private int ticksUntilNextGrowl = 100;
     private AnimationFactory factory = new AnimationFactory(this);
+
+    /**
+     * Instantiates a new T rex entity.
+     *
+     * @param entityType the entity type
+     * @param world      the world
+     */
     public T_rexEntity(EntityType<? extends T_rexEntity> entityType, World world) {
         super(entityType, world);
         this.ignoreCameraFrustum= true;
     }
 
+    /**
+     * Set attributes default attribute container . builder.
+     *
+     * @return the default attribute container . builder
+     */
     public static DefaultAttributeContainer.Builder setAttributes(){
         return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_ATTACK_DAMAGE,50d)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH,1000.0d)
@@ -46,6 +61,10 @@ public class T_rexEntity extends AnimalEntity implements IAnimatable ,Monster {
 
 
     }
+
+    /**
+     * Init custom goals.
+     */
     protected void initCustomGoals(){
         this.goalSelector.add(3, new AttackGoal(this));
         this.goalSelector.add(0, new WanderAroundFarGoal(this, 1.0,1.0f));
@@ -97,6 +116,13 @@ public class T_rexEntity extends AnimalEntity implements IAnimatable ,Monster {
     protected SoundEvent getDeathSound() {
         return FossilSounds.TREX_DEATH;
     }
+
+    /**
+     * Is angry at boolean.
+     *
+     * @param player the player
+     * @return the boolean
+     */
     public boolean isAngryAt(PlayerEntity player) {
         return true;
     }

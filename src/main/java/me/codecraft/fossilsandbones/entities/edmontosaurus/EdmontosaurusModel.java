@@ -4,6 +4,9 @@ import me.codecraft.fossilsandbones.Fossil;
 import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
+/**
+ * The type Edmontosaurus model.
+ */
 public class EdmontosaurusModel extends AnimatedGeoModel<EdmontosaurusEntity> {
     @Override
     public Identifier getModelResource(EdmontosaurusEntity object) {

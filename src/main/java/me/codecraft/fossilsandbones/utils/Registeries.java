@@ -5,7 +5,13 @@ import me.codecraft.fossilsandbones.entities.T_rex.T_rexEntity;
 import me.codecraft.fossilsandbones.entities.edmontosaurus.EdmontosaurusEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 
+/**
+ * The type Registeries.
+ */
 public class Registeries {
+    /**
+     * Init.
+     */
     public static void init(){
         registerAttributes();
     }

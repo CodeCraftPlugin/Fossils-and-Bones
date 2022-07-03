@@ -18,7 +18,16 @@ import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+/**
+ * The type Edmontosaurus entity.
+ */
 public class EdmontosaurusEntity extends AnimalEntity implements IAnimatable {
+    /**
+     * Instantiates a new Edmontosaurus entity.
+     *
+     * @param entityType the entity type
+     * @param world      the world
+     */
     public EdmontosaurusEntity(EntityType<? extends AnimalEntity> entityType, World world) {
 
         super(entityType, world);
@@ -53,6 +62,11 @@ public class EdmontosaurusEntity extends AnimalEntity implements IAnimatable {
         return factory;
     }
 
+    /**
+     * Set attributes default attribute container . builder.
+     *
+     * @return the default attribute container . builder
+     */
     public static DefaultAttributeContainer.Builder setAttributes(){
         return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_ATTACK_DAMAGE,25)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH,500d)

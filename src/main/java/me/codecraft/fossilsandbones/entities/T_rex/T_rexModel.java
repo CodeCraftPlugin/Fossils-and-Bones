@@ -4,6 +4,9 @@ import me.codecraft.fossilsandbones.Fossil;
 import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
+/**
+ * The type T rex model.
+ */
 public class T_rexModel extends AnimatedGeoModel<T_rexEntity> {
 
 

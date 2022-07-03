@@ -6,7 +6,15 @@ import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
+/**
+ * The type T rex render.
+ */
 public class T_rexRender extends GeoEntityRenderer<T_rexEntity> {
+    /**
+     * Instantiates a new T rex render.
+     *
+     * @param ctx the ctx
+     */
     public T_rexRender(EntityRendererFactory.Context ctx) {
         super(ctx, new T_rexModel());
     }

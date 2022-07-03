@@ -10,8 +10,14 @@ import net.minecraft.entity.SpawnGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+/**
+ * The type Enties.
+ */
 public class Enties {
 
+    /**
+     * The constant T_REX.
+     */
     public static final EntityType<T_rexEntity> T_REX = registery("t_rex", FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, T_rexEntity::new)
             .dimensions(new EntityDimensions(3.0f,3.0f,false))
             .build());
@@ -22,6 +28,10 @@ public class Enties {
     private static EntityType registery(String name, EntityType entity){
         return Registry.register(Registry.ENTITY_TYPE, new Identifier(Fossil.MOD_ID,name),entity);
     }
+
+    /**
+     * Entiesregistered.
+     */
     public static void entiesregistered(){
         System.out.println("All entity registered by " + Fossil.MOD_ID);
     }
