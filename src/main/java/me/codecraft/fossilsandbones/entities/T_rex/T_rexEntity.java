@@ -1,7 +1,5 @@
 package me.codecraft.fossilsandbones.entities.T_rex;
 
-import me.codecraft.fossilsandbones.Fossil;
-import me.codecraft.fossilsandbones.entities.Enties;
 import me.codecraft.fossilsandbones.entities.edmontosaurus.EdmontosaurusEntity;
 import me.codecraft.fossilsandbones.sounds.FossilSounds;
 import net.minecraft.entity.EntityType;
@@ -18,7 +16,6 @@ import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.TimeHelper;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.World;
@@ -54,6 +51,10 @@ public class T_rexEntity extends AnimalEntity implements IAnimatable , Angerable
         super(entityType, world);
         this.ignoreCameraFrustum= true;
     }
+    static {
+        ANGER_TIME = DataTracker.registerData(T_rexEntity.class, TrackedDataHandlerRegistry.INTEGER);
+        ANGER_TIME_RANGE = TimeHelper.betweenSeconds(20, 39);
+    }
 
     /**
      * Set attributes default attribute container . builder.
@@ -67,7 +68,7 @@ public class T_rexEntity extends AnimalEntity implements IAnimatable , Angerable
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED,0.35d);}
 
     protected void initGoals(){
-        this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class,9.0f));
+        this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class,1.0f));
         this.goalSelector.add(2, new LookAroundGoal(this));
         this.goalSelector.add(0,new SwimGoal(this));
         this.initCustomGoals();
@@ -78,6 +79,7 @@ public class T_rexEntity extends AnimalEntity implements IAnimatable , Angerable
 
     @Override
     protected void initDataTracker() {
+        super.initDataTracker();
         this.dataTracker.startTracking(ANGER_TIME, 0);
     }
 
@@ -86,7 +88,7 @@ public class T_rexEntity extends AnimalEntity implements IAnimatable , Angerable
      */
     protected void initCustomGoals(){
         this.goalSelector.add(3, new AttackGoal(this));
-        this.goalSelector.add(0, new WanderAroundFarGoal(this, 1.0,1.0f));
+        this.goalSelector.add(0, new WanderAroundFarGoal(this, 1.0,0.5f));
         this.targetSelector.add(2, new ActiveTargetGoal(this, PlayerEntity.class, true));
         this.targetSelector.add(7, new ActiveTargetGoal(this, EdmontosaurusEntity.class, true));
 
@@ -96,7 +98,6 @@ public class T_rexEntity extends AnimalEntity implements IAnimatable , Angerable
     public void registerControllers(AnimationData animationData) {
         animationData.addAnimationController(new AnimationController(this, "controller",
                 1, this::predicate));
-
     }
 
     @Override
@@ -119,33 +120,19 @@ public class T_rexEntity extends AnimalEntity implements IAnimatable , Angerable
     }
 
 
-    public void tickMovement() {
-    }
-
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
         if (this.hasAngerTime()) {
             return FossilSounds.TREX_ANGER;
         } else {
-            return SoundEvents.ENTITY_WOLF_AMBIENT;
+            return FossilSounds.TREX_IDEL;
         }
     }
 
     @Override
     protected SoundEvent getDeathSound() {
         return FossilSounds.TREX_DEATH;
-    }
-
-    /**
-     * Is angry at boolean.
-     *
-     * @param player the player
-     * @return the boolean
-     */
-
-    public boolean isAngryAt(PlayerEntity player) {
-        return true;
     }
 
     @Override
@@ -178,8 +165,5 @@ public class T_rexEntity extends AnimalEntity implements IAnimatable , Angerable
     public void chooseRandomAngerTime() {
         this.setAngerTime(ANGER_TIME_RANGE.get(this.random));
     }
-    static {
-        ANGER_TIME = DataTracker.registerData(T_rexEntity.class, TrackedDataHandlerRegistry.INTEGER);
-        ANGER_TIME_RANGE = TimeHelper.betweenSeconds(20, 39);
-    }
+
 }

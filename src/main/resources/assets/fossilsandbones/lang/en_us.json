@@ -1,5 +1,10 @@
 {
   "entity.fossilsandbones.t_rex": "Tyrannosaurus Rex",
   "entity.fossilsandbones.edmontosaurus": "Edmontosaurus",
-  "item.fossilsandbones."
+
+
+  "item.fossilsandbones.t_rex_spawnegg": "Tyrannosaurus Rex SpawnEgg",
+  "item.fossilsandbones.edmon_spawnegg": "Edmontosaurus SpawnEgg",
+
+  "itemGroup.fossilsandbones.fossil_and_bones": "Fossil And Bones"
 }
