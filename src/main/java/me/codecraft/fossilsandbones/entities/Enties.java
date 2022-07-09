@@ -19,10 +19,10 @@ public class Enties {
      * The constant T_REX.
      */
     public static final EntityType<T_rexEntity> T_REX = registery("t_rex", FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, T_rexEntity::new)
-            .dimensions(new EntityDimensions(3.0f,3.0f,false))
+            .dimensions(new EntityDimensions(3.0f,3.0f,false)).trackRangeBlocks(10)
             .build());
     public static final EntityType<EdmontosaurusEntity> EDMONTOSAURUS = registery("edmontosaurus", FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EdmontosaurusEntity::new)
-            .dimensions(EntityDimensions.fixed(5.0f, 3.0f))
+            .dimensions(EntityDimensions.fixed(5.0f, 3.0f)).trackRangeBlocks(10)
             .build());
 
     private static EntityType registery(String name, EntityType entity){

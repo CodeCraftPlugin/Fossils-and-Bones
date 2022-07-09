@@ -4,10 +4,7 @@ import me.codecraft.fossilsandbones.entities.Enties;
 import me.codecraft.fossilsandbones.entities.T_rex.T_rexEntity;
 import me.codecraft.fossilsandbones.sounds.FossilSounds;
 import me.codecraft.fossilsandbones.utils.FossilTag;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.Tameable;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -48,6 +45,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import java.util.UUID;
+import java.util.function.Predicate;
 
 /**
  * The  Edmontosaurus Dino.
@@ -61,6 +59,7 @@ public class EdmontosaurusEntity extends AnimalEntity implements IAnimatable, An
      */
 
     private static final TrackedData<Integer> ANGER_TIME;
+
     private static final UniformIntProvider ANGER_TIME_RANGE;
     @Nullable
     private UUID angryAt;
@@ -77,10 +76,7 @@ public class EdmontosaurusEntity extends AnimalEntity implements IAnimatable, An
         super(entityType, world);
         this.ignoreCameraFrustum= true;
     }
-    static {
-        ANGER_TIME = DataTracker.registerData(EdmontosaurusEntity.class, TrackedDataHandlerRegistry.INTEGER);
-        ANGER_TIME_RANGE = TimeHelper.betweenSeconds(20, 39);
-    }
+
 
 
     @Override
@@ -97,9 +93,11 @@ public class EdmontosaurusEntity extends AnimalEntity implements IAnimatable, An
         this.goalSelector.add(3, new TemptGoal(this, 1.1,Ingredient.fromTag(FossilTag.Items.EDMON_BREAD) , false));
         this.goalSelector.add(4, new FollowParentGoal(this, 1.1));
         this.goalSelector.add(6, new WanderAroundFarGoal(this, 1.0));
+        this.goalSelector.add(5, new MeleeAttackGoal(this, 1.0, true));
         this.goalSelector.add(7, new LookAtEntityGoal(this, PlayerEntity.class, 24.0F));
         this.goalSelector.add(8, new LookAroundGoal(this));
-        this.targetSelector.add(2, new RevengeGoal(this, new Class[0]));
+        this.targetSelector.add(3, (new RevengeGoal(this, new Class[0])).setGroupRevenge(new Class[0]));
+        this.targetSelector.add(4, new ActiveTargetGoal(this, LivingEntity.class, 10, true,false,(Predicate<LivingEntity>) this::shouldAngerAt));
 
     }
 
@@ -218,6 +216,18 @@ public class EdmontosaurusEntity extends AnimalEntity implements IAnimatable, An
         } else {
             return FossilSounds.TREX_IDEL;
         }
+    }
+
+
+
+    static {
+        ANGER_TIME = DataTracker.registerData(EdmontosaurusEntity.class, TrackedDataHandlerRegistry.INTEGER);
+        ANGER_TIME_RANGE = TimeHelper.betweenSeconds(20, 39);
+        AngeryPredectate = (entity) ->{
+            EntityType<?> entityType = entity.getType();
+            ServerWorld serverWorld = (ServerWorld) entity.world;
+            return entityType==EntityType.PLAYER;
+        };
     }
 
     @Override
