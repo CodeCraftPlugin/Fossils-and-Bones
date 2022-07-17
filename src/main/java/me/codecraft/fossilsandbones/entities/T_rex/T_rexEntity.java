@@ -64,11 +64,11 @@ public class T_rexEntity extends AnimalEntity implements IAnimatable , Angerable
     public static DefaultAttributeContainer.Builder setAttributes(){
         return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_ATTACK_DAMAGE,50d)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH,1000.0d)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED,2.0d)
+                .add(EntityAttributes.GENERIC_ATTACK_SPEED,.4)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED,0.35d);}
 
     protected void initGoals(){
-        this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class,1.0f));
+        this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class,4.0f));
         this.goalSelector.add(2, new LookAroundGoal(this));
         this.goalSelector.add(0,new SwimGoal(this));
         this.initCustomGoals();
@@ -88,9 +88,10 @@ public class T_rexEntity extends AnimalEntity implements IAnimatable , Angerable
      */
     protected void initCustomGoals(){
         this.goalSelector.add(3, new AttackGoal(this));
-        this.goalSelector.add(0, new WanderAroundFarGoal(this, 1.0,0.5f));
+        this.goalSelector.add(0, new WanderAroundFarGoal(this, 0.25,0.5f));
         this.targetSelector.add(2, new ActiveTargetGoal(this, PlayerEntity.class, true));
         this.targetSelector.add(7, new ActiveTargetGoal(this, EdmontosaurusEntity.class, true));
+        this.goalSelector.add(0,new EscapeDangerGoal(this,0.25));
 
 
     }
@@ -105,12 +106,18 @@ public class T_rexEntity extends AnimalEntity implements IAnimatable , Angerable
         return factory;
     }
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        if (event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.t_rex.walk", true));
+        if (this.isAlive()) {
+            if (event.isMoving()) {
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.t_rex.walk", true));
+                return PlayState.CONTINUE;
+            }
+            if (this.targetSelector.equals(PlayerEntity.class)) {
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.t_rex.run", true));
+                return PlayState.CONTINUE;
+            }
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.t_rex.idle", true));
             return PlayState.CONTINUE;
         }
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.t_rex.idle", true));
-
         return PlayState.CONTINUE;
     }
 

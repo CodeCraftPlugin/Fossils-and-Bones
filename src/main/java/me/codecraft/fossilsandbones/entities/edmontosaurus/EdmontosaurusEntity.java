@@ -1,7 +1,7 @@
 package me.codecraft.fossilsandbones.entities.edmontosaurus;
 
-import me.codecraft.fossilsandbones.entities.Enties;
-import me.codecraft.fossilsandbones.entities.T_rex.T_rexEntity;
+import me.codecraft.fossilsandbones.entities.DinosaursBaseEntity;
+import me.codecraft.fossilsandbones.entities.FossilEntities;
 import me.codecraft.fossilsandbones.sounds.FossilSounds;
 import me.codecraft.fossilsandbones.utils.FossilTag;
 import net.minecraft.entity.*;
@@ -16,25 +16,18 @@ import net.minecraft.entity.mob.Angerable;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
-import net.minecraft.entity.passive.SheepEntity;
-import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.tag.BlockTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TimeHelper;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -50,7 +43,7 @@ import java.util.function.Predicate;
 /**
  * The  Edmontosaurus Dino.
  */
-public class EdmontosaurusEntity extends AnimalEntity implements IAnimatable, Angerable {
+public class EdmontosaurusEntity extends DinosaursBaseEntity implements IAnimatable {
     /**
      * Instantiates a new Edmontosaurus entity.
      *
@@ -96,14 +89,14 @@ public class EdmontosaurusEntity extends AnimalEntity implements IAnimatable, An
         this.goalSelector.add(5, new MeleeAttackGoal(this, 1.0, true));
         this.goalSelector.add(7, new LookAtEntityGoal(this, PlayerEntity.class, 24.0F));
         this.goalSelector.add(8, new LookAroundGoal(this));
-        this.targetSelector.add(3, (new RevengeGoal(this, new Class[0])).setGroupRevenge(new Class[0]));
+        this.targetSelector.add(3, (new RevengeGoal(this, new Class[0])));
         this.targetSelector.add(4, new ActiveTargetGoal(this, LivingEntity.class, 10, true,false,(Predicate<LivingEntity>) this::shouldAngerAt));
 
     }
 
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity passiveEntity) {
-        EdmontosaurusEntity  idk = Enties.EDMONTOSAURUS.create(world);
+        EdmontosaurusEntity  idk = FossilEntities.EDMONTOSAURUS.create(world);
         return idk;
     }
 
@@ -137,6 +130,10 @@ public class EdmontosaurusEntity extends AnimalEntity implements IAnimatable, An
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         if (event.isMoving()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("edmontosaurus.animation.walk", true));
+            return PlayState.CONTINUE;
+        }
+        if(this.hasAngerTime()){
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("edmontosaurus.animation.run", true));
             return PlayState.CONTINUE;
         }
         event.getController().setAnimation(new AnimationBuilder().addAnimation("edmontosaurus.animation.idle", true));
@@ -180,8 +177,8 @@ public class EdmontosaurusEntity extends AnimalEntity implements IAnimatable, An
     public static DefaultAttributeContainer.Builder setAttributes(){
         return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_ATTACK_DAMAGE,25)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH,500d)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED,0.75)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED,0.35d);}
+                .add(EntityAttributes.GENERIC_ATTACK_SPEED,0.35)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED,0.15d);}
 
     @Override
     public int getAngerTime() {
@@ -223,11 +220,7 @@ public class EdmontosaurusEntity extends AnimalEntity implements IAnimatable, An
     static {
         ANGER_TIME = DataTracker.registerData(EdmontosaurusEntity.class, TrackedDataHandlerRegistry.INTEGER);
         ANGER_TIME_RANGE = TimeHelper.betweenSeconds(20, 39);
-        AngeryPredectate = (entity) ->{
-            EntityType<?> entityType = entity.getType();
-            ServerWorld serverWorld = (ServerWorld) entity.world;
-            return entityType==EntityType.PLAYER;
-        };
+
     }
 
     @Override

@@ -13,7 +13,7 @@ import net.minecraft.util.registry.Registry;
 /**
  * The type Enties.
  */
-public class Enties {
+public class FossilEntities {
 
     /**
      * The constant T_REX.

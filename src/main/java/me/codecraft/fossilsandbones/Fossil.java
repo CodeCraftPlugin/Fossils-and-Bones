@@ -1,6 +1,6 @@
 package me.codecraft.fossilsandbones;
 
-import me.codecraft.fossilsandbones.entities.Enties;
+import me.codecraft.fossilsandbones.entities.FossilEntities;
 import me.codecraft.fossilsandbones.items.FossilItemGroups;
 import me.codecraft.fossilsandbones.items.FossilItems;
 import me.codecraft.fossilsandbones.sounds.FossilSounds;
@@ -32,7 +32,7 @@ public class Fossil implements ModInitializer {
 		// Proceed with mild caution
 		LOGGER.info("Hello Fabric world!");
 		Registeries.init();
-		Enties.entiesregistered();
+		FossilEntities.entiesregistered();
 		FossilSounds.modsound();
 		FossilItems.registeredFossilItems();
 		FossilItemGroups.registered();

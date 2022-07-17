@@ -29,4 +29,5 @@ public class EdmontosaurusModel extends AnimatedGeoModel<EdmontosaurusEntity> {
     public Identifier getAnimationResource(EdmontosaurusEntity animatable) {
         return new Identifier(Fossil.MOD_ID,"animations/edmontosaurus.animation.json");
     }
+
 }

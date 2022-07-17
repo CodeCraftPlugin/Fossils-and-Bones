@@ -3,7 +3,6 @@ package me.codecraft.fossilsandbones.entities.T_rex;
 import me.codecraft.fossilsandbones.Fossil;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
 /**
