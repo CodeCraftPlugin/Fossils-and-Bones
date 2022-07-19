@@ -17,5 +17,6 @@ public class FossilClient implements ClientModInitializer {
     public void onInitializeClient() {
         EntityRendererRegistry.register(FossilEntities.T_REX,T_rexRender::new);
         EntityRendererRegistry.register(FossilEntities.EDMONTOSAURUS, EdmontosaurusRender::new);
+        EntityRendererRegistry.register(FossilEntities.EDMONTOSAURUS, EdmontosaurusRender::new);
     }
 }

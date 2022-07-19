@@ -5,7 +5,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.mob.Angerable;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
@@ -22,9 +21,9 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class PterosaurEntity extends DinosaursBaseEntity implements IAnimatable{
+public class QuetzalcoatlusEntity extends DinosaursBaseEntity implements IAnimatable{
 
-    public PterosaurEntity(EntityType<? extends AnimalEntity> entityType, World world) {
+    public QuetzalcoatlusEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
     }
     private AnimationFactory factory = new AnimationFactory(this);

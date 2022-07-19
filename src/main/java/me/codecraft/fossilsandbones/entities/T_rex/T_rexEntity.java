@@ -106,7 +106,7 @@ public class T_rexEntity extends AnimalEntity implements IAnimatable , Angerable
         return factory;
     }
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        if (this.isAlive()) {
+
             if (event.isMoving()) {
                 event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.t_rex.walk", true));
                 return PlayState.CONTINUE;
@@ -117,8 +117,6 @@ public class T_rexEntity extends AnimalEntity implements IAnimatable , Angerable
             }
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.t_rex.idle", true));
             return PlayState.CONTINUE;
-        }
-        return PlayState.CONTINUE;
     }
 
     @Override

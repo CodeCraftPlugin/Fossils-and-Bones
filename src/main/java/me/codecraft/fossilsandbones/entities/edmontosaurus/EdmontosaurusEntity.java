@@ -67,7 +67,6 @@ public class EdmontosaurusEntity extends DinosaursBaseEntity implements IAnimata
      */
     public EdmontosaurusEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
-        this.ignoreCameraFrustum= true;
     }
 
 
@@ -99,6 +98,7 @@ public class EdmontosaurusEntity extends DinosaursBaseEntity implements IAnimata
         EdmontosaurusEntity  idk = FossilEntities.EDMONTOSAURUS.create(world);
         return idk;
     }
+
 
     public boolean damage(DamageSource source, float amount) {
         if (this.isInvulnerableTo(source)) {
